@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import Header from '../../components/Header'
 import Balance from '../../components/Balance';
 import Moviments from '../../components/Moviments';
+import Actions from '../../components/Actions';
 
 //dados de uma suposta api por ex.
 const list = [
@@ -27,6 +28,27 @@ const list = [
     date: '17/04/2023',
     type: 1 //receitas-entradas
   },
+  {
+    id:4,
+    label: 'Conta de Água',
+    value: '179,60',
+    date: '04/04/2023',
+    type: 0 //despesas
+  },
+  {
+    id:5,
+    label: 'Internet Brisa',
+    value: '99,90',
+    date: '06/04/2023',
+    type: 0 //despesas
+  },
+  {
+  id:6,
+  label: 'Empréstimo',
+  value: '1.000,00',
+  date: '10/04/2023',
+  type: 0 //despesas
+  },
 ]
 
 export default function Home() {
@@ -37,6 +59,8 @@ export default function Home() {
         <StatusBar style="auto" />
 
         <Balance saldo="9.250,90" gastos="-527,00"/>
+
+        <Actions/>
 
         <Text style={styles.title}>Últimas Movimentações</Text>
 
