@@ -1,7 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import Header from '../../components/Header'
 import Balance from '../../components/Balance';
+import Moviments from '../../components/Moviments';
+
+//dados de uma suposta api por ex.
+const list = [
+  {
+    id:1,
+    label: 'Boleto conta de luz',
+    value: '300,90',
+    date: '05/04/2023',
+    type: 0 //despesas
+  },
+  {
+    id:2,
+    label: 'Pix Cliente x',
+    value: '2.500,00',
+    date: '01/04/2023',
+    type: 1 //receitas-entradas
+  },
+  {
+    id:3,
+    label: 'Salário',
+    value: '7.500,00',
+    date: '17/04/2023',
+    type: 1 //receitas-entradas
+  },
+]
 
 export default function Home() {
   return (
@@ -10,7 +36,17 @@ export default function Home() {
         {/* <Text>Página Home</Text> */}
         <StatusBar style="auto" />
 
-        <Balance/>
+        <Balance saldo="9.250,90" gastos="-527,00"/>
+
+        <Text style={styles.title}>Últimas Movimentações</Text>
+
+        <FlatList
+          style={styles.list}
+          data={list}
+          keyExtractor={(item) => String(item.id)}
+          showsVerticalScrollIndicator={false}
+          renderItem={({item}) => <Moviments data={item}/> }
+        />
     </View>
   );
 }
@@ -22,4 +58,15 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     // justifyContent: 'center',
   },
+  title:{
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 14,
+    marginRight: 14,
+    marginTop: 14,
+  },
+  list:{
+    marginStart: 14,
+    marginEnd: 14,
+  }
 });
